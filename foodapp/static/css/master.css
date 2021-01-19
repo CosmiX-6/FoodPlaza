@@ -1,0 +1,200 @@
+{% load static %}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+body{
+  background-image: url("/static/images/mainscreen4.jpg");
+  height: 100vh;
+  max-width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.middle{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 7px;
+  background-image: linear-gradient(180deg, #c0ecfd91, #07f8ff5c);
+  /*background-image: linear-gradient(180deg, #1e7e34ab, #ffc107e8);*/
+  /*background-image: linear-gradient(180deg, rgba(85,139,47 ,1), rgba(158,157,36 ,1));*/
+  /*background: linear-gradient(280deg,#558B2F,#000);*/
+  width: 470px;
+  height: 600px;
+  overflow: hidden;
+  position: ;
+  box-shadow:0px 3px 10px;
+  padding-top: 10px;
+}
+.middle-admin-reg{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-radius: 7px;
+  background-image: linear-gradient(180deg, #c0ecfd91, #07f8ff5c);
+  /*background-image: linear-gradient(180deg, #1e7e34ab, #ffc107e8);*/
+  /*background-image: linear-gradient(180deg, rgba(85,139,47 ,1), rgba(158,157,36 ,1));*/
+  /*background: linear-gradient(280deg,#558B2F,#000);*/
+  width: 470px;
+  height: 400px;
+  overflow: hidden;
+  position: ;
+  box-shadow:0px 3px 10px;
+  padding-top: 10px;
+}
+.form-container{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 5px;
+}
+.entry-box{
+  color: black;
+  display: block;
+  padding: 5px 0 5px 0;
+  margin-top: 15px;
+  font-family: sans-serif;
+  font-family: 'Sriracha', cursive;
+  text-align: left;
+}
+.entry-box input{
+  float: right;
+  width: 250px;
+  outline: none;
+  color: rgba(33,33,33 ,1);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0.1px 0.1px 5px;
+  padding: 0 16px 0 16px;
+}
+.entry-box textarea{
+  float: right;
+  width: 250px;
+  outline: none;
+  color: rgba(33,33,33 ,1);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0.1px 0.1px 5px;
+  padding: 0 16px 0 16px;
+}
+.butn{
+  margin-top: 25px;
+  border: none;outline: none;
+  font-family: sans-serif;
+  font-weight: bold;
+  width: 40%;
+  font-size: 100%;
+  height: 30px;
+  background-image: linear-gradient(40deg,orange, pink);;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px;
+  letter-spacing: 1px;
+  font-family: 'Sriracha', cursive;
+}
+.butn:hover{
+  background-image: linear-gradient(45deg, #e53935,#FF7043);
+  font-weight: 200;
+  color:white;
+
+}
+.main-reg{
+  background-image: url("/static/images/mainscreen3.jpg");
+}
+main{
+  margin-top: 50px;
+  flex: 1 0 auto;
+}
+footer {
+  margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  background-color: #232323;
+  color: white;
+  font-family: sans-serif;
+  font-size:12px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.ext-link {
+  color: red;
+}
+.ext-link:hover {
+  color: white;
+}
+.foot-con{
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+}
+.fo-cont-1{
+  width:30%;
+  float: left;
+  text-align: center;
+  font-size: 30px;
+  font-weight: normal;
+  color: ;
+  font-family: 'Bevan', cursive;
+  overflow: hidden;
+}
+.fo-cont-2{
+  width:38%;
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+  color: ;
+  font-family: 'Ultra', serif;
+  overflow: hidden;
+}
+.fo-cont-3{
+  width:30%;
+  float: left;
+  font-size: 12px;
+  text-align: left;
+
+}
+@media (max-width:720px) {
+    footer {
+        font-size: 100%;
+        padding: 10px 0;
+    }
+    .foot-con{
+      width: 100%;
+      overflow: hidden;
+    }
+    .fo-cont-1{
+      width:100%;
+      max-height: 500px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: normal;
+      color: ;
+      font-family: 'Bevan', cursive;
+    }
+    .fo-cont-2{
+      width:100%;
+      font-size: 12px;
+      text-align: center;
+      font-weight: normal;
+      color: ;
+      font-family: 'Ultra', serif;
+    }
+    .fo-cont-3{
+      width:30%;
+      float: left;
+      font-size: 12px;
+      text-align: left;
+    }
+}

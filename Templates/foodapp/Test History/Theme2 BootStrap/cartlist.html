@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% load static %}
+    <title>Sizzle | Cart</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script>
+	$(document).ready(function(){
+		$(".qnt").change(function(){
+			var s=this.nextSibling.value+"@"+this.value;
+			$.get("updateqnty/"+s);
+		});
+	});
+		function confirm()
+		{
+			document.getElementById("cnf-btn").style.display = "none";
+			document.getElementById("sub-btn").style.display = "block";
+		}
+		function validate() {
+      
+         if( document.MyForm.Address.value == "" ) {
+            alert( "Please provide your Address!" );
+            document.MyForm.Address.focus() ;
+            return false;
+			}
+		}
+</script>
+</head>
+
+<body>
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+    <!-- MENU -->
+    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <!--            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar">raju</span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+         -->
+                <!-- lOGO TEXT HERE -->
+                <a href="index.html" class="navbar-brand"> Sizzle </a>
+            </div>
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="home" class="smoothScroll">Home</a></li>
+					{% if request.session.CustId is None and request.session.AdminId is not None %}
+                    <li><a href="addfoods" class="smoothScroll">Add Food</a></li>
+					{% endif %}
+                    <li><a href="allfood" class="smoothScroll">Food Menu</a></li>
+					{% if request.session.CustId is not None and request.session.AdminId is None %}
+                    <li><a href="allcart" class="smoothScroll"><i class="fa fa-shopping-cart" style="font-size:18px;"></i> Cart</a></li>
+					{% endif %}
+					{% if request.session.CustId is not None and request.session.AdminId is None %}	
+					<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user-circle" style="font-size:20px;"></i>&nbsp;My Account
+            </a>
+            <div class="dropdown-menu" style="background-color:#000;border-radius:4px;padding-top: 15px;border-bottom: 3px solid red; " aria-labelledby="navbarDropdown">
+			
+              <a class="dropdown-item" href="getcustomer"><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Edit Profile</a>
+			  
+            <div class="dropdown-divider" style="padding-top: 10px;border-bottom: 1px solid white; opacity:0.7;width:90%;margin-left:5%;" ></div>
+			<div class="dropdown-divider" style="padding-bottom: 10px;" ></div>
+              <a class="dropdown-item" href="orders"><i class="fas fa-clipboard-list" ></i>&nbsp;&nbsp;&nbsp;Orders</a>
+			  
+            <div class="dropdown-divider" style="padding-bottom: 10px;" ></div>
+			  
+          </li>
+		  {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+					{% if request.session.CustId is not None and request.session.AdminId is None %}
+					<a href="tel:+918422081717"  class="section-btn">📞 Call Now</a>
+					{% endif %}
+					
+					{% if request.session.CustId is None and request.session.AdminId is None %}
+                    <a href="addcustomer" class="section-btn">Register</a>
+					{% endif %}
+					
+					{% if request.session.CustId is None and request.session.AdminId is None %}
+                    <a href="login" class="section-btn">Login</a>
+					{% endif %}
+					
+					{% if request.session.CustId is not None or request.session.AdminId is not None %}
+                    <a href="logout" class="section-btn"><i class="fa fa-sign-out" style="color:white"></i> Logout</a>
+					{% endif %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <div class="inner-page-banner-area">
+        <div class="container">
+            <div class="pagination-area">
+                <h2>Cart</h2>
+                <ul>
+                    <li><a href="home">Home -</a> /</li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	<form action="placeorder" name="MyForm" method="post">
+	{% csrf_token %}
+		<!-- cards -->
+		{% for c in cartlist %}
+		<div class="card hover" style="height:310px;">
+			
+			<!-- <div class="card-content">
+				<a href="#!">
+					<h2><b>{{c.FoodName}}</b></h2>
+					<p>&#8377; {{c.FoodPrice}} x <input type="number" style="width:50px;" name="FoodQuant" class="qnt" value="{{c.FoodQuant}}" id="foodqnt" min="1" max="20"/><input type="hidden" id="ctid" value="{{c.CartId}}" readonly /><a  class="section-btn" style="background-color:red;float:right;color:white;position:relative;height:25px;padding:5px 5px 25px 5px;" href="/deletecart/{{c.CartId}}">Delete</a></p>
+				</a>
+			</div> -->
+			<div class="" style="position: static;width:100%;height:140px;margin-left: 0%;box-shadow:0px 20px 4px 1px;margin-top:0px;margin-bottom:0px;">
+        <div class="" style="background-image:url(/media/{{c.FoodImage}});position: static;line-height: 100%;
+    background-size: 100% 100%;margin:0px;background-repeat: no-repeat;background-position:center;color: #fff;height: 140px;width:100%;overflow:hidden;">
+		</div>
+        <span style="color:black;float:left;margin-left:10px;"><article><span style="color:red;font-size:14px;">Cart ID: <b style="letter-spacing: 3px;color: grey;">{{c.CartId}}</b></span></article><b style="font-size:20px;"><i>{{c.FoodName}}</i></b><br/><b>Quantity :</b>
+        <input type="number" name="FoodQuant" class="qnt" value="{{c.FoodQuant}}" id="foodqnt" min="1" max="20" style="text-align:center;"/><input type="hidden" id="ctid" name="{{c.FoodPrice}}" value="{{c.CartId}}" readonly />
+<br />
+<tr>
+<td><b>Price:  </b></td><td id="tlp" style="color:black;"><input class="totalprice" style="outline:none;border:none;width:auto!important;" name="FoodPrice" value="{{c.FoodPrice}}" readonly></td>
+</tr>
+      </span>
+
+        
+      </div>
+	  <a href="/deletecart/{{c.CartId}}"><button type="button" name="button" style="float: right;border-radius: 0px;padding: 5px 15px 5px 15px;margin-bottom: 10px;margin-top: 30px;margin-right:10px;background: #bb0202;color:white;font-weight: normal;border:none;outline:none;">DELETE</button></a>
+		</div>
+		{% endfor %}<hr />
+		<!-- cards end here-->
+		<center><input onclick="confirm()" id="cnf-btn" class="section-btn" style="text-align:center;cursor:pointer;" value="CONFIRM" /></center>
+		
+		<center><input type="submit" id="sub-btn" class="section-btn" style="display:none;text-align:center;" value="PLACE ORDER" /></center>
+		<hr>
+
+	</form>
+    <!-- FOOTER -->
+    <footer id="footer" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-8">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Find us</h2>
+                        </div>
+                        <address class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p>123, pragati college,Datta Nagar<br>Dombivali East</p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-8">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
+                        </div>
+                        <address class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p>+919876543210 | +919876543210</p>
+                            <p><a href="mailto:cmdzinc@gmail.com">info@sizzle.com</a></p>
+                            <p>Telegram:@Heroofswarg </p>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-8">
+                    <div class="footer-info footer-open-hour">
+                        <div class="section-title">
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
+                        </div>
+                        <div class="wow fadeInUp" data-wow-delay="0.4s">
+                            <p>Monday: Closed</p>
+                            <div>
+                                <strong>Tuesday to Sunday</strong>
+                                <p>7:00 AM - 9:00 PM</p>
+                            </div>
+                            <div>
+                                <strong>Saturday - Sunday</strong>
+                                <p>11:00 AM - 12:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4">
+                    <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
+                        <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                        <li><a href="#" class="fa fa-twitter"></a></li>
+                        <li><a href="#" class="fa fa-instagram"></a></li>
+                        <li><a href="#" class="fa fa-google"></a></li>
+                    </ul>
+                    <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
+                        <p><br>Copyright &copy; 2020 <br>Sizzle.com
+                            <br><br>Design By: <a rel="nofollow" href="#">RAR Group</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- SCRIPTS -->
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/smoothscroll.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>
+</body>
+
+</html>

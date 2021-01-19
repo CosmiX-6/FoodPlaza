@@ -1,0 +1,34 @@
+<html>
+<head>
+</head><center><body>
+	
+<table class="list" cellpadding="5px">
+<br /><div style="background-color: #516520;width:100%;">
+<h1>CUST LIST</h1></div>
+<thead>
+<tr>
+<th>CUST ID</th>
+<th>CUST NAME</th>
+<th>CUST EMAIL</th>
+<th>CUST PASSWORD</th>
+<th>CUST CONTACT</th>
+</tr>
+</thead>
+<tbody>
+{% for c in custlist %}
+<tr>
+<td>{{c.CustId}}</td>
+<td>{{c.CustName}}</td>
+<td>{{c.CustEmail}}</td>
+<td>{{c.CustPass}}</td>
+<td>{{c.CustCont}}</td>
+<td><a href="/getcustomer/{{c.CustId}}">Update</a></td>
+<td><a href="/deletecustomer/{{c.CustId}}">Delete</a></td>
+</tr>
+{% endfor %}
+	</tbody>
+</table>
+	
+</body></center>
+</html>
+

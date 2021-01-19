@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+	{% load static %}
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/imperial_style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Caveat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bevan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat:400,700&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <title>Sizzle | AddFood</title>
+	<link rel="shortcut icon" href="{% static 'images/favico.png' %}" type="image/x-icon">
+  </head>
+    <nav class="navbar navbar-expand-lg navbar-light" style="position: fixed;width:100%;background-image: linear-gradient(180deg,#FFF,#FFF);box-shadow: 0px 0px 7px 0px #404040;">
+      <a class="navbar-brand" href="/"><h2 style="color:black;font-family:sans-serif;font-weight:bolder;"><b>Sizzle</b></h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav" style="margin-left:auto!important;margin-right:30px;">
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+          </li>
+          {% if request.session.CustId is None and request.session.AdminId is not None %}
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="addfoods">Add Food <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="allfood">Food Menu <span class="sr-only">(current)</span></a>
+          </li>
+          {% if request.session.CustId is None and request.session.AdminId is None %}
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="addcustomer">Register <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          {% if request.session.CustId is None and request.session.AdminId is None %}
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="login">Login <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          {% if request.session.CustId is not None and request.session.AdminId is None %}
+          <li class="nav-item active">
+            <a class="nav-link" id="nav-link" href="allcart"><i class="fas fa-shopping-cart" style="font-size:20px;"></i> Cart <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          {% if request.session.CustId is not None or request.session.AdminId is not None %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-user-circle" style="font-size:20px;color:black;"></i>&nbsp;My Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			{% if request.session.CustId is not None and request.session.AdminId is None %}
+              <a class="dropdown-item" href="getcustomer">Edit Profile</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="orders"><i class="fas fa-clipboard-list" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;Orders</a>
+              <a class="dropdown-item" href="orders"><i class="fas fa-history" style="font-size:20px;"></i>&nbsp;&nbsp;Order History</a>
+            <div class="dropdown-divider"></div>
+			  {% endif %}
+              <a class="dropdown-item" style="background:red;width:1;border-radius:4px;" href="logout"><i class="fas fa-sign-out-alt" style="font-size:20px;color:white;"></i>&nbsp;&nbsp;<font color="white">Logout</font></a>
+            </div>
+          </li>
+          
+          {% endif %}
+        </ul>
+
+      </div>
+    </nav>
+      <main>
+        <center><div class="middle-admin-reg">
+          <center ><legend style="margin-top:25px;box-shadow:0px 3px 5px;width:50%;background:white;border-radius:25px;font-family: 'Courgette', cursive;">New Food</legend></center>
+          <div class="form-container">
+            <form class="" action="addfoods" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <span class="entry-box">Food Name : <input type="text" name="FoodName" placeholder="Eg: &quot;Dragon-Roll&quot;"></span>
+            <span class="entry-box">Food Category : <input type="text" name="FoodCat" placeholder="Eg : &quot;Snacks&quot;"></span>
+            <span class="entry-box">Food Price : <input type="tel" name="FoodPrice" maxlength="6"  placeholder="&quot;in Rs&quot;" required></span>
+            <span class="entry-box">Food image : <input type="file" class="valid" name="FoodImage" style="padding-left:0px" required/></span>
+            <center><br/><button type="reset"class="butn" style="background-image: linear-gradient(190deg, rgba(183,28,28 ,1), rgba(239,154,154 ,1));" name="button">Cancel</button>
+            &nbsp;&nbsp;<button type="submit"class="butn"  name="button">Add</button>
+              </center>
+            </form>
+          </div>
+        </div></center>
+      </main>
+    <footer>
+      <div class="foot-con">
+        <div class="fo-cont-1">
+            SIZZLE
+        </div>
+        <div class="fo-cont-2">
+          <a class="ext-link" href="#">Home</a> |
+            <a class="ext-link" href="#">About us</a> |
+              <a class="ext-link" href="#">Privacy Policy</a> |
+                <a class="ext-link" href="#">Terms & Conditions</a>
+        </div>
+        <div class="fo-cont-3">
+          Name:	Miss Jazmin Heller Jr.<br />
+Phone:	38547800<br />
+Company:	Collins-Harris<br />
+Address	40 Tik Keung New Village Yik Ngoi Yai New Territories
+        </div>
+      </div><hr style="background-color: grey;margin-top:0px;"/>Made with HTML5 & CSS.<br />
+      Made by Certified <b>PPS Friends</b> an RAR Group's.<br />
+      ©<script type='text/javascript'>var creditsyear = new Date();document.write(creditsyear.getFullYear());</script> <a class="ext-link" href="/"><b>SIZZLE</b></a> All Rights Reserved | RAR Group's
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/imperial_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Caveat:700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bevan&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Caveat:400,700&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <style media="screen">
+      .w3-content,.w3-auto{margin-left:auto;margin-right:auto}.w3-content{max-width:980px}.w3-auto{max-width:1140px}
+      .w3-section,.w3-code{margin-top:16px!important;margin-bottom:16px!important}
+      .mySlides {display:none;}
+    </style>
+
+    <title></title>
+  </head>
+  <body style="background-image: none;">
+      <!-- <div id="top-nav">
+        <h1>IMPERIAL GARDEN</h1>
+        <a class="items" href="#">My Account</a>
+        <a class="items" href="#">Track Order</a>
+        <a class="items" href="#">Log in</a>
+        <a class="items" href="#">Sign up</a>
+        <a class="items" href="#">Food Menu</a>
+        <a class="items" href="#">Home</a>
+      </div>
+
+    </header> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="position:fixed;width:100%;background-image: linear-gradient(180deg, rgba(85,139,47 ,1), rgba(158,157,36 ,1));">
+      <a class="navbar-brand" href="#">Imperial Garden</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav" style="margin-left:auto!important;margin-right:30px;">
+          <li class="nav-item active">
+            <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" href="addfoods">Add Food <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="allfood">Food Menu <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="addcustomer">Register <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="login">Login <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="allcart"><i class="fas fa-shopping-cart" style="font-size:20px;color:black;"></i> Cart <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-user-circle" style="font-size:20px;color:black;"></i>&nbsp;My Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="getcustomer">Edit Profile</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><i class="fas fa-clipboard-list" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;Orders</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-history" style="font-size:20px;"></i>&nbsp;&nbsp;Order History</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" style="background:red;width:1;border-radius:4px;" href="#"><i class="fas fa-sign-out-alt" style="font-size:20px;color:white;"></i>&nbsp;&nbsp;<font color="white">Logout</font></a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="far fa-user-circle" style="font-size:20px;color:black;"></i>&nbsp;My Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!-- <a class="dropdown-item" href="#">Edit Password</a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><i class="fas fa-clipboard-list" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;Orders</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-history" style="font-size:20px;"></i>&nbsp;&nbsp;Order History</a>
+            <div class="dropdown-divider"></div> -->
+              <a class="dropdown-item" style="background:red;width:1;border-radius:4px;" href="logout"><i class="fas fa-sign-out-alt" style="font-size:20px;color:white;"></i>&nbsp;&nbsp;<font color="white">Logout</font></a>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+    <main>
+      <div class="" style="background:#343;width:90%;height:100vh;margin-left:5%;padding-top:80px;">
+        <div class="desc-card" style="background:#323;height:90%;width:100%;">
+          <div class="desc-img" style="background:#FFF;height:70vh;width:70vh;margin-top:5%;">
+
+          </div>
+        </div>
+      </div>
+      </main>
+
+  </body>
+</html>

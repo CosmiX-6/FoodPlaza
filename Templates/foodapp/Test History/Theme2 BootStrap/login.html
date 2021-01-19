@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+  {% load static %}
+    <title></title>
+
+    <link rel="stylesheet" href="{% static 'css/styleax.css' %}">
+	
+	<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+  </head>
+
+  <body>
+
+    <form class="login-form" action="dologin" method="post">
+    
+  {% csrf_token %}
+
+      <h1>Login</h1>
+      
+      <div class="log-usertype">
+
+        <input type="radio" name="type" value="Admin" required>Admin
+
+        <input type="radio" name="type" value="User" required>User
+
+      </div>
+
+      <div class="log-txt-box">
+
+        <input type="text" name="userId" value="" required>
+
+        <span data-placeholder="Username"></span>
+
+      </div>
+
+      <div class="log-txt-box">
+
+        <input type="password" name="userpass" value="" required>
+
+        <span data-placeholder="Password"></span>
+
+      </div>
+
+      <input type="submit" class="log-btn" name="" value="Login">
+
+      <div class="log-sign-btn">
+
+        Don't have account ?<a href="#">Sign up</a></br></br>
+		<font color="red">{{ failure }}</font>
+      </div>
+
+    </form>
+
+    <script type="text/javascript">
+
+      $(".log-txt-box input").on("focus",function(){
+
+        $(this).addClass("focus");
+
+      });
+
+      $(".log-txt-box input").on("blur",function(){
+
+        if($(this).val() == "")
+
+        $(this).removeClass("focus");
+
+      });
+
+    </script>
+
+  </body>
+
+</html> 
