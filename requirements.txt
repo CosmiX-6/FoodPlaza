@@ -3,3 +3,4 @@ Django==3.1.7
 Pillow==8.1.0
 pytz==2021.1
 sqlparse==0.4.1
+django-environ==0.11.2
