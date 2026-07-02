@@ -11,6 +11,40 @@
   The website is minimized as much as possible to avoid errors when entering data. It also gives an error message when entering invalid data. No formal knowledge is required for the user to use this system. Therefore, every test is easy to use. Online food order systems, as described above, can lead to error-free, safe, reliable and fast management systems. This can help the user focus on his other activities instead of focusing on record keeping. Therefore, it will help the organization to make better use of resources.
 
 
+__Project Structure__
+.foodorder/: The main project directory.
+..foodapp/: The main app directory.
+...models.py: Defines the database models.
+...views.py: Contains the view functions and logic.
+...urls.py: Defines URL patterns and routing.
+.templates/: Contains HTML templates for rendering views.
+.static/: Contains static files like CSS, JavaScript, and images.
+
+__Models__
+
+Food: Represents food items available for order.
+
+Fields: FoodId, FoodName, FoodCat, FoodPrice, FoodImage
+Database Table: FP_Food
+Cust: Represents customer accounts.
+
+Fields: CustId, CustFName, CustLName, CustCont, CustEmail, CustPass, Address
+Database Table: FP_Cust
+Admin: Represents admin accounts.
+
+Fields: AdminId, AdminPass
+Database Table: FP_Admin
+Cart: Represents the user's cart with selected food items.
+
+Fields: CartId, CustEmail, FoodId, FoodQuant
+Database Table: FP_Cart
+Order: Represents customer orders.
+
+Fields: OrderId, CustEmail, OrderDate, TotalBill
+Database Table: FP_Order
+
+
+
 Homepage:<br>
 ![alt text](https://github.com/CosmiX-6/FoodPlaza/blob/main/Screenshots/foodplaza-admin-home-1.png "Home Preview")
 ![alt text](https://github.com/CosmiX-6/FoodPlaza/blob/main/Screenshots/foodplaza-login.png "Login Preview")
