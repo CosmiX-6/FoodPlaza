@@ -69,7 +69,7 @@ def deletecust(request,CustId):
 	
 def getcust(request):
 	print(request.session['CustId'])
-	for c in Cust.objects.raw('Select * from FP_Cust where CustEmail="%s"'%request.session['CustId']):
+	for c in Cust.objects.raw('Select * from FP_Cust where CustEmail=%s', [request.session['CustId']]):
 		custs=c
 	return render(request,'updatecust.html',{'c':custs})
 	
@@ -96,7 +96,7 @@ def doLogin(request):
 		utype = request.POST.get('type','')
 		
 		if utype == "Admin":
-			for a in Admin.objects.raw('Select * from FP_Admin where AdminId="%s" and AdminPass="%s"'%(uid,upass)):
+			for a in Admin.objects.raw('Select * from FP_Admin where AdminId=%s and AdminPass=%s', [uid, upass]):
 				if a.AdminId==uid:
 					request.session['AdminId']=uid
 					return render(request,"index.html",{'success':'Welcome '+a.AdminId})
@@ -104,7 +104,7 @@ def doLogin(request):
 				return render(request,"login.html",{'failure':'Incorrect login details'})
 					
 		if utype == "User":
-			for a in Cust.objects.raw('Select * from FP_Cust where CustEmail="%s" and CustPass="%s"'%(uid,upass)):
+			for a in Cust.objects.raw('Select * from FP_Cust where CustEmail=%s and CustPass=%s', [uid, upass]):
 				if a.CustEmail==uid:
 					request.session['CustId']=uid
 					return render(request,"index.html",{'success':'Welcome '+a.CustEmail})
